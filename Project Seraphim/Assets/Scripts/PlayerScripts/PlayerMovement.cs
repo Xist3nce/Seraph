@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : SeraphLibrary
 {
     public float movementspeed;
 
     public Vector2 movementVec;
+    public Vector2 lastMovementVec;
+    public Vector2 lockedMovementVec;
 
     public bool stunned;
+    public bool rolling;
+    public bool moving;
 
     public Rigidbody2D rb;
     public SpriteRenderer sr;
@@ -22,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        DontDestroyOnLoad(this.gameObject);
+
     }
 
 
@@ -33,13 +39,19 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("Horizontal", movementVec.x);
         anim.SetFloat("Vertical", movementVec.y);
         anim.SetFloat("Speed",movementVec.sqrMagnitude);
-        if (movementVec.x < .5f)
+        if (lastMovementVec.x < -.1f)
         {
             sr.flipX = true;
         }
-        if (movementVec.x > .5f)
+        if (lastMovementVec.x > .1f)
         {
             sr.flipX = false;
+        }
+
+        if ((Input.GetButtonDown("roll")) && moving && !stunned)
+        {
+            lockedMovementVec = movementVec;
+            StartCoroutine(Roll());
         }
 
 
@@ -48,10 +60,47 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!stunned)
+        if (!stunned && !rolling)
         {
-            rb.MovePosition(rb.position + movementVec * movementspeed * Time.fixedDeltaTime);
+            if (movementVec.sqrMagnitude > 0)//((movementVec.x >= 0.1) || (movementVec.y >= 0.1) || (movementVec.x <= -0.1) || (movementVec.y <= -0.1))
+            {
+                rb.MovePosition(rb.position + movementVec * movementspeed * Time.fixedDeltaTime);
+                moving = true;
+                lastMovementVec = movementVec;
+            }
+            if ((movementVec.x == 0) && (movementVec.y == 0))
+            {
+                moving = false;
+            }
         }
+        if (rolling && !stunned)
+        {
+            rb.MovePosition((rb.position + lockedMovementVec * movementspeed*2 * Time.fixedDeltaTime));
+        }
+        
+
+
+    }
+
+
+    IEnumerator Roll()
+    {
+        if ((moving) && (!rolling))
+        {
+            anim.SetTrigger("Roll");
+            rolling = true;
+            yield return new WaitForSeconds(0.4f);
+            RollComplete();
+        }
+        if (rolling)
+        {
+            Debug.Log("Already Rolling");
+        }
+    }
+    void RollComplete()
+    {
+        rolling = false;
+        anim.SetTrigger("RollComplete");
 
 
     }

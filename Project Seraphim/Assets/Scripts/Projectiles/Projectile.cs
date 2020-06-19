@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Projectile : MonoBehaviour
+public abstract class Projectile : SeraphLibrary
 {
     public GameObject Owner;
     public float Damage;
     public float Speed;
-    public enum Element { physical, fire, water, air, earth, lightning, ice, death, life };
+    public float Knockback;
+    public float armorPen;
     public Element ElementalEffect;
     [Space]
     public float ExplosionDamage;
@@ -18,10 +19,13 @@ public abstract class Projectile : MonoBehaviour
     public float ChainCount;
     public float ChainDist;
     [Space]
+    public int pierceCount;
+    [Space]
     public GameObject ParticleEffect;
     private Collider2D col;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
+    private Animator anim;
 
 
     private void Start()
@@ -45,7 +49,7 @@ public abstract class Projectile : MonoBehaviour
 
     public virtual void Move()
     {
-        rb.velocity = new Vector2 (0,Speed);
+        rb.velocity = transform.up * Speed;
     }
 
     public virtual void Explode()
@@ -61,7 +65,12 @@ public abstract class Projectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        collision.gameObject.SendMessage("DamageEntity", Damage);
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Entity entityHit = collision.gameObject.GetComponent<Entity>();
+            entityHit.Damage(Damage, ElementalEffect, armorPen);
+        }
+        Die();
 
     }
 
