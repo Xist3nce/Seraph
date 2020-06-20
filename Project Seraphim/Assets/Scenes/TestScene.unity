@@ -51437,14 +51437,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2311aa42e8b691c458759a3b0f2504f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DebugUIGO: {fileID: 0}
+  debugUIGO: {fileID: 0}
   m_Scene: 
   m_MyGameObject: {fileID: 797266911}
-  ScreenTrans: {fileID: 0}
-  Player1GO: {fileID: 1560775498}
+  screenTrans: {fileID: 0}
+  player1GO: {fileID: 0}
   PC1: {fileID: 1560775504}
-  Player1UI: {fileID: 0}
-  ThingsToWake: []
+  player1UI: {fileID: 0}
+  thingsToWake: []
 --- !u!4 &797266913
 Transform:
   m_ObjectHideFlags: 0
@@ -51992,6 +51992,7 @@ GameObject:
   - component: {fileID: 1504960997}
   - component: {fileID: 1504960996}
   - component: {fileID: 1504960998}
+  - component: {fileID: 1504960999}
   m_Layer: 12
   m_Name: Scarecrow
   m_TagString: Enemy
@@ -52127,6 +52128,25 @@ MonoBehaviour:
   health: 100
   aspect: 0
   weakAspect: 2
+--- !u!95 &1504960999
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504960993}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a9027d42b8d527049b8bcbfcb6d51a04, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1560775498
 GameObject:
   m_ObjectHideFlags: 0

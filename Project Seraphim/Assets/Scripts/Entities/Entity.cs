@@ -21,6 +21,10 @@ public class Entity : SeraphLibrary
     private void Start()
     {
         health = maxHealth;
+        if (animController == null)
+        {
+            animController = GetComponent<Animator>();
+        }
     }
     void OnEnable()
     {
@@ -66,6 +70,11 @@ public class Entity : SeraphLibrary
             HealthCheck();
             Debug.Log("Normal Damage, PreComp: " + preCompDamage + " Final Damage: " + finalDMG);
 
+        }
+        //Temp Code
+        if (animController != null)
+        {
+            animController.SetTrigger("Hit");
         }
 
     }
