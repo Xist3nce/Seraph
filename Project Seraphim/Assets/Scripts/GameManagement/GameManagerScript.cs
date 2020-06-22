@@ -9,6 +9,8 @@ public class GameManagerScript : SeraphLibrary {
     public string m_Scene;
     public GameObject m_MyGameObject;
     public Animator screenTrans;
+    [SerializeField]
+    private GameObject _inventory;
 
     [Space]
 
@@ -41,7 +43,15 @@ public class GameManagerScript : SeraphLibrary {
     /// </summary>
     /// 
 
-        
+    public void OpenInventory()
+    {
+        _inventory.SetActive(true);
+    }
+
+    public void CloseInventory()
+    {
+        _inventory.SetActive(false);
+    }
 
     public void GoToScene(string sentscene)
     {
