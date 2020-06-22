@@ -34,8 +34,9 @@ public class PlayerMovement : SeraphLibrary
     private void Update()
     {
 
-       movementVec = new Vector2 (Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical")).normalized; //Movement Vector is HorizontalX and VerticalY and is normalized.
+        movementVec = new Vector2 (Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical")).normalized; //Movement Vector is HorizontalX and VerticalY and is normalized.
 
+       //this was for the movement manager that I didn't use //movementVec = PlayerInputManager.movementVectorNormalized;
         anim.SetFloat("Horizontal", movementVec.x);
         anim.SetFloat("Vertical", movementVec.y);
         anim.SetFloat("Speed",movementVec.sqrMagnitude);
@@ -49,6 +50,7 @@ public class PlayerMovement : SeraphLibrary
         }
 
         if ((Input.GetButtonDown("roll")) && moving && !stunned)
+        //failed movemet manager// if ((PlayerInputManager.roll) && moving && !stunned)
         {
             lockedMovementVec = movementVec;
             StartCoroutine(Roll());
@@ -57,7 +59,6 @@ public class PlayerMovement : SeraphLibrary
 
 
     }
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (!stunned && !rolling)

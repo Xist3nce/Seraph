@@ -5,7 +5,6 @@ using UnityEngine;
 public class WeaponBase : SeraphLibrary
 {
 
-    public string WeaponName = "ForgotToSetWeaponName";
     public float Damage = 1;
     public float ProjectileSpeed = 1;
     public float ReloadTime = 1;
@@ -27,11 +26,7 @@ public class WeaponBase : SeraphLibrary
     public Animator AnimController;
     public GameObject GroundItem;
     [Space]
-    public int SellPrice = 1;
-    public int BuyPrice = 1;
-    [Space]
-    public bool Equipped;
-    public bool OnGround;
+
     public bool Initialized;
 
     public Vector3 shotOffset;
@@ -48,26 +43,9 @@ public class WeaponBase : SeraphLibrary
             AnimController = GetComponent<Animator>();
         }
     }
-    public virtual void OnEquip()
-    {
-        Debug.Log(WeaponName + " was equipped");
-        Equipped = true;
-    }
-    public virtual void OnDrop()
-    {
-        Debug.Log(WeaponName + " was dropped");
-        OnGround = true;
-
-    }
-    public virtual void OnPickup()
-    {
-        Debug.Log(WeaponName + " was picked up");
-
-    }
 
     public virtual void OnEnable()
     {
-        Debug.Log(WeaponName + " Enabled");
         if (!Initialized)
         {
             Initialize();
@@ -76,7 +54,7 @@ public class WeaponBase : SeraphLibrary
 
     public virtual void Initialize()
     {
-        Debug.Log(WeaponName + " is initialized");
+
     }
 
     public virtual void FireWeapon()

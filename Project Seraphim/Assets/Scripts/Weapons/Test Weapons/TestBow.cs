@@ -37,6 +37,7 @@ public class TestBow : WeaponBase
 
         }
         if (Input.GetButton("Fire1"))
+        //if (PlayerInputManager.Fire1)
         {
             AnimController.SetInteger("ShotType", shotCharge);
             if ((Time.time - holdTimer < minChargeTime) && (Time.time - holdTimer < holdTimer))
@@ -58,8 +59,10 @@ public class TestBow : WeaponBase
             TimePassed = Time.time - holdTimer;
         }
         if (!(Input.GetButton("Fire1")))
+        //if (!PlayerInputManager.Fire1)
         {
             triggerHeld = false;
+            Release();
 
         }
         if (Input.GetButtonUp("Fire1"))
