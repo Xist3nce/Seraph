@@ -22,9 +22,9 @@ public class GameManagerScript : SeraphLibrary {
 
     [Space]
 
-    // Player 1 info and controls
+    // Player info and controls
     public GameObject player1GO;
-    public PlayerMovement PC1;
+    public static PlayerMovement PCM;
     public GameObject player1UI;
     [Space]
     public GameObject[] thingsToWake;
@@ -35,13 +35,31 @@ public class GameManagerScript : SeraphLibrary {
         DontDestroyOnLoad(this.gameObject);
     }
 
+    //Player Handling
+    public void StartPlayer()
+    {
+        int loopcounter = 0;
+        while (loopcounter < thingsToWake.Length) //Loop to make sure the loop only checks as many objects as there are in the array.
+        {
+            thingsToWake[loopcounter].SetActive(false);
+            loopcounter++;
+        }
+
+    }
+    public void StopPlayer()
+    {
+        PCM.StopAllCoroutines();
+        int loopcounter = 0;
+        while (loopcounter < thingsToWake.Length) //Loop to make sure the loop only checks as many objects as there are in the array.
+        {
+            thingsToWake[loopcounter].SetActive(false);
+            loopcounter++;
+        }
+    }
 
 
-    /// <summary>
-    ///  This is the scene swapper area, simple and rudimentary. Will probably update it if project complexity
-    ///  increases. For now this is all we need.
-    /// </summary>
-    /// 
+
+    //Inventory Area
 
     public void OpenInventory()
     {
@@ -53,6 +71,9 @@ public class GameManagerScript : SeraphLibrary {
         _inventory.SetActive(false);
     }
 
+
+
+    //Scene Area
     public void GoToScene(string sentscene)
     {
         m_Scene = sentscene;
@@ -65,6 +86,8 @@ public class GameManagerScript : SeraphLibrary {
         SceneManager.LoadScene(m_Scene);
         screenTrans.SetTrigger("FadeIn");
     }
+
+    //Debug Area
 
     public void ToggleDebugUI()
     {

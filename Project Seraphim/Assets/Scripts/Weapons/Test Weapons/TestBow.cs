@@ -5,8 +5,6 @@ using UnityEngine;
 public class TestBow : WeaponBase
 {
     [SerializeField]
-    private bool triggerHeld;
-    [SerializeField]
     private float holdTimer;
 
     [Space]
@@ -33,7 +31,6 @@ public class TestBow : WeaponBase
         if (Input.GetButtonDown("Fire1"))
         {
             holdTimer = Time.time;
-            triggerHeld = true;
 
         }
         if (Input.GetButton("Fire1"))
@@ -55,13 +52,11 @@ public class TestBow : WeaponBase
                 shotCharge = 3;
 
             }
-            triggerHeld = true;
             TimePassed = Time.time - holdTimer;
         }
         if (!(Input.GetButton("Fire1")))
         //if (!PlayerInputManager.Fire1)
         {
-            triggerHeld = false;
             Release();
 
         }
@@ -91,7 +86,6 @@ public class TestBow : WeaponBase
         }
         shotCharge = 0;
         AnimController.SetInteger("ShotType", shotCharge);
-        triggerHeld = false;
     }
 
     public override void FireWeapon()
