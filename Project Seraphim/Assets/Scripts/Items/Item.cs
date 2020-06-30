@@ -18,6 +18,8 @@ public class Item : SeraphLibrary
     private bool _equipped;
     [SerializeField]
     private bool _dropped;
+    [SerializeField]
+    private bool _equippable;
 
 
     // Start is called before the first frame update
@@ -46,10 +48,19 @@ public class Item : SeraphLibrary
     {
 
     }
-
-    public virtual int Price(int priceMod)
+    public ItemType GetItemType()
     {
-        int processedPrice = (_basePrice * priceMod);
+        return _itemType;
+    }
+
+    public SpriteRenderer SpriteRenderer()
+    {
+        return _itemSR;
+    }
+
+    public virtual int Price()
+    {//Add the price mod once you make the Gamestatus script
+        int processedPrice = (_basePrice); //* priceMod//);
         return processedPrice;
     }
 }

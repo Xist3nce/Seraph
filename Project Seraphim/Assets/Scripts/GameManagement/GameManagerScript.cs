@@ -23,9 +23,12 @@ public class GameManagerScript : SeraphLibrary {
     [Space]
 
     // Player info and controls
-    public GameObject player1GO;
+    [SerializeField]
+    private GameObject playerGO;
     public static PlayerMovement PCM;
-    public GameObject player1UI;
+    [SerializeField]
+    private GameObject playerUI;
+    public GameObject aimer;
     [Space]
     public GameObject[] thingsToWake;
     /// 
@@ -33,6 +36,7 @@ public class GameManagerScript : SeraphLibrary {
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+        
     }
 
     //Player Handling
