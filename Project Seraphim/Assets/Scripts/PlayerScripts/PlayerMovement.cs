@@ -9,11 +9,11 @@ public class PlayerMovement : SeraphLibrary
     public Vector2 movementVec;
     public Vector2 lastMovementVec;
     public Vector2 lockedMovementVec;
-
+    [Space]
     public bool stunned;
     public bool rolling;
     public bool moving;
-
+    [Space]
     public Rigidbody2D rb;
     public SpriteRenderer sr;
     public Animator anim;

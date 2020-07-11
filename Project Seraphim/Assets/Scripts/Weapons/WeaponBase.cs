@@ -10,6 +10,7 @@ public class WeaponBase : SeraphLibrary
     public float ReloadTime = 1;
     public float FireRate = 1;
     public int ClipSize = 3;
+    public int shotsLeft;
     public int pierceCount;
     public float armorPen;
     public Element passedElement;
@@ -26,7 +27,6 @@ public class WeaponBase : SeraphLibrary
     public Animator AnimController;
     public GameObject GroundItem;
     [Space]
-
     public bool Initialized;
 
     public Vector3 shotOffset;

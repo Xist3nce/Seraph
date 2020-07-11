@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class TestSword : WeaponBase
 {
-    // Start is called before the first frame update
+    private int _swingCounter;
+
+
+
+
     void Start()
     {
         
@@ -13,6 +17,15 @@ public class TestSword : WeaponBase
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetButtonDown("Fire1"))
+        {
+            
+        }
+
+    }
+
+    void Swing()
+    {
+
     }
 }
