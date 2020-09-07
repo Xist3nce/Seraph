@@ -16,9 +16,9 @@ public class GameManagerScript : SeraphLibrary {
 
     ///Settings///
     //Static General Settings
-    public static int particleIntensity = 3;
-    public static bool screenshake = true;
-    public static bool damageText = true;
+    public int particleIntensity = 3;
+    public bool screenshake = true;
+    public bool damageText = true;
 
     [Space]
 
@@ -31,11 +31,13 @@ public class GameManagerScript : SeraphLibrary {
     public GameObject aimer;
     [Space]
     public GameObject[] thingsToWake;
+    public static GameManagerScript instance;
     /// 
 
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+        instance = this;
         
     }
 

@@ -28,7 +28,7 @@ public class WeaponBase : SeraphLibrary
     public GameObject GroundItem;
     [Space]
     public bool Initialized;
-
+    public bool canFire = true;
     public Vector3 shotOffset;
 
 
@@ -59,6 +59,8 @@ public class WeaponBase : SeraphLibrary
 
     public virtual void FireWeapon()
     {
+        if (canFire)
+        {
         Projectile createdProjectile = Instantiate(ProjectileGO, transform.position + shotOffset, Aimer.gameObject.transform.rotation).GetComponent<Projectile>();
         createdProjectile.Damage = (Damage * DamageMod);
         createdProjectile.Speed = (ProjectileSpeed * ProjectileSpeedMod);
@@ -67,9 +69,25 @@ public class WeaponBase : SeraphLibrary
         if (passedElement != Element.none)
         {
             createdProjectile.ElementalEffect = passedElement;
-            Debug.Log(createdProjectile.name + "Element shifted to " + passedElement);
+            //Debug.Log(createdProjectile.name + "Element shifted to " + passedElement);
         }
 
+        }
+
+    }
+
+    public virtual IEnumerator TimeBetweenShots()
+    {
+        canFire = false;
+        yield return new WaitForSeconds(FireRate);
+        canFire = true;
+    }
+    public virtual IEnumerator Reload()
+    {
+        canFire = false;
+        yield return new WaitForSeconds(ReloadTime);
+        shotsLeft = ClipSize;
+        canFire = true;
     }
 
 }

@@ -37,18 +37,19 @@ public abstract class Projectile : SeraphLibrary
     }
     public virtual void Shot()
     {
-        if (TimeTilDeath > 0)
-        {
-            DeathTimer();
-        }
         if (Speed > 0)
         {
             Move();
+        }
+        if (TimeTilDeath > 0)
+        {
+            StartCoroutine(DeathTimer());
         }
     }
 
     public virtual void Move()
     {
+        Debug.Log("Shot TOLD TO MOVE DAMMIT");
         rb.velocity = transform.up * Speed;
     }
 
@@ -63,7 +64,7 @@ public abstract class Projectile : SeraphLibrary
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {

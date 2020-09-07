@@ -17,6 +17,9 @@ public class PlayerMovement : SeraphLibrary
     public Rigidbody2D rb;
     public SpriteRenderer sr;
     public Animator anim;
+    private int initialLayer;
+    [Space]
+    public static PlayerMovement instance;
 
 
 
@@ -27,6 +30,8 @@ public class PlayerMovement : SeraphLibrary
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         DontDestroyOnLoad(this.gameObject);
+        initialLayer = gameObject.layer;
+        instance = this;
 
     }
 
@@ -34,12 +39,12 @@ public class PlayerMovement : SeraphLibrary
     private void Update()
     {
 
-        movementVec = new Vector2 (Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical")).normalized; //Movement Vector is HorizontalX and VerticalY and is normalized.
+        movementVec = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized; //Movement Vector is HorizontalX and VerticalY and is normalized.
 
-       //this was for the movement manager that I didn't use //movementVec = PlayerInputManager.movementVectorNormalized;
+        //this was for the movement manager that I didn't use //movementVec = PlayerInputManager.movementVectorNormalized;
         anim.SetFloat("Horizontal", movementVec.x);
         anim.SetFloat("Vertical", movementVec.y);
-        anim.SetFloat("Speed",movementVec.sqrMagnitude);
+        anim.SetFloat("Speed", movementVec.sqrMagnitude);
         if (lastMovementVec.x < -.1f)
         {
             sr.flipX = true;
@@ -76,9 +81,9 @@ public class PlayerMovement : SeraphLibrary
         }
         if (rolling && !stunned)
         {
-            rb.MovePosition((rb.position + lockedMovementVec * movementspeed*2 * Time.fixedDeltaTime));
+            rb.MovePosition((rb.position + lockedMovementVec * movementspeed * 2 * Time.fixedDeltaTime));
         }
-        
+
 
 
     }
@@ -89,6 +94,7 @@ public class PlayerMovement : SeraphLibrary
         if ((moving) && (!rolling))
         {
             anim.SetTrigger("Roll");
+            gameObject.layer = 11;
             rolling = true;
             yield return new WaitForSeconds(0.4f);
             RollComplete();
@@ -101,8 +107,14 @@ public class PlayerMovement : SeraphLibrary
     void RollComplete()
     {
         rolling = false;
+        gameObject.layer = initialLayer;
         anim.SetTrigger("RollComplete");
 
+
+    }
+
+    public void StunFor(float seconds)
+    {
 
     }
 }
