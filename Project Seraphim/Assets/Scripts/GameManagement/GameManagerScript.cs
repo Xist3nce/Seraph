@@ -37,6 +37,7 @@ public class GameManagerScript : SeraphLibrary {
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+        FloatingTextController.Initialize();
         instance = this;
         
     }
