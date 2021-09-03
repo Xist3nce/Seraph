@@ -51,7 +51,7 @@ public class Entity : SeraphLibrary
             health -=finalDMG;
             HealthCheck();
             Debug.Log("Same aspect, PreComp: " + preCompDamage + " Final Damage: " + finalDMG);
-            FloatingTextController.CreateFloatingText("TEST", transform, finalDMG);
+            FloatingTextController.CreateFloatingText(finalDMG.ToString(), transform, finalDMG);
 
         }
         if ((weakAspect == elementalDamage) && (elementalDamage != Element.none))
@@ -61,7 +61,7 @@ public class Entity : SeraphLibrary
             health -= finalDMG;
             HealthCheck();
             Debug.Log("Weakness aspect, PreComp: " + preCompDamage + " Final Damage: " + finalDMG);
-            FloatingTextController.CreateFloatingText("TEST", transform, finalDMG);
+            FloatingTextController.CreateFloatingText(finalDMG.ToString(), transform, finalDMG);
 
 
         }
@@ -72,7 +72,7 @@ public class Entity : SeraphLibrary
             health -= finalDMG;
             HealthCheck();
             Debug.Log("Normal Damage, PreComp: " + preCompDamage + " Final Damage: " + finalDMG);
-            FloatingTextController.CreateFloatingText("TEST", transform, finalDMG);
+            FloatingTextController.CreateFloatingText(finalDMG.ToString(), transform, finalDMG);
 
         }
         //Temp Code

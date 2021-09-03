@@ -49,7 +49,7 @@ public abstract class Projectile : SeraphLibrary
 
     public virtual void Move()
     {
-        Debug.Log("Shot TOLD TO MOVE DAMMIT");
+        //Debug.Log("Shot TOLD TO MOVE DAMMIT");
         rb.velocity = transform.up * Speed;
     }
 

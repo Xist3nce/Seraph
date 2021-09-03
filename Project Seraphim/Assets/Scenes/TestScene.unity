@@ -54169,7 +54169,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5790424180985d498e33aa959c272e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSlotList: []
+  itemSlotList:
+  - {fileID: 0}
+  - {fileID: 0}
   selectedObject: {fileID: 0}
   aimer: {fileID: 1057889770}
   InventoryUI: {fileID: 1252668510}
@@ -54187,7 +54189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4df9edec6ce75479cc8bb0c6f515f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popuptextreference: {fileID: 0}
+  popuptextreference: {fileID: 1511039042}
 --- !u!1 &911880649
 GameObject:
   m_ObjectHideFlags: 0
@@ -55072,7 +55074,7 @@ Transform:
   m_GameObject: {fileID: 1329995174}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.33333334, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.75, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1057889771}
   m_RootOrder: 0
@@ -55148,7 +55150,7 @@ MonoBehaviour:
   shotsLeft: 0
   pierceCount: 0
   armorPen: 0
-  passedElement: 2
+  passedElement: 0
   DamageMod: 1
   ProjectileSpeedMod: 1
   ReloadTimeMod: 1
@@ -55341,7 +55343,7 @@ MonoBehaviour:
   passedElement: 0
   DamageMod: 1
   ProjectileSpeedMod: 1
-  ReloadTimeMod: 1
+  ReloadTimeMod: 0.5
   FireRateMod: 0
   ClipSizeMod: 0
   PlayerStatus: {fileID: 0}
@@ -60449,6 +60451,12 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &1511039042 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5855238617579591130, guid: 9026e16568e94a74db32a8afecd8e8ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 347985707}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1516843836
 PrefabInstance:
   m_ObjectHideFlags: 0

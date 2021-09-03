@@ -27,7 +27,7 @@ public class FloatingTextController : MonoBehaviour {
         if (GameManagerScript.instance.damageText)
         {
             DamageNumbers instance = Instantiate(popupText);
-            Vector2 screenPosition = Camera.main.WorldToScreenPoint(new Vector2((location.position.x + Random.Range(-.3f, .3f)), (location.position.y - 10)));
+            Vector2 screenPosition = Camera.main.WorldToScreenPoint(new Vector2((location.position.x + Random.Range(-.3f, .3f)), (location.position.y-2f)));
             instance.transform.SetParent(canvas.transform, false);
             instance.transform.position = screenPosition;
             if (DMGAMT < 1)
